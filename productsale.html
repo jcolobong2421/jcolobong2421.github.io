@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Product Sale</title>
+</head>
+<style>
+
+    
+    
+    
+    
+    
+    form {
+        background-color:rgb(241, 235, 235) ;
+        padding: 20px 15px;
+        margin:10px 0 ;
+        width: 350px;
+        font-size: 17px;
+        font-family: sans-serif;
+        border-radius: 8px;
+        border:2px solid rgb(81, 81, 83);
+    }
+    form td {
+        margin: 0;
+    }
+    
+    form ul {
+        padding:10px 0 ;
+        margin: 0;
+    }
+    table {
+        background-color: white;
+        
+        padding: 8px;
+        width: 300px;
+        height: 350px;
+        font-size: 15px;
+        border-radius: 5px;
+    }
+    button{
+        padding: 5px 8px;
+        background-color:rgb(74, 46, 12);
+        color: white;
+        border-radius: 5px ;
+    }
+    input {
+        height: 18px ;
+        font-size: 14px;
+    }
+   
+
+    table h4 {
+        text-align: center;
+    }
+    .label {
+        text-align: center;
+    }
+    .total {
+        color: rgb(164, 56, 56);
+        font-size: 18px;
+        border-top: 1px solid rgb(70, 70, 70);
+        padding: 0;
+        margin: 0;
+    }
+    tbody {
+        margin: 0;
+        padding: 0;
+    }
+    #summary-shippingFee {
+        border-bottom: 1px solid rgb(70, 70, 70);
+    }
+    .h3{
+        text-align: center;
+    }
+
+
+    
+</style>
+
+<script type="text/javascript">
+    const quantityInput = document.getElementById("item-qty");
+let itemInput = document.getElementById("item-qty");
+const productValue = "15.97";
+
+function increment() {
+    const quantityInput = document.getElementById("item-qty");
+    quantityInput.value = parseInt(quantityInput.value) + 1;
+    updateOutput();
+}
+
+function decrement() {
+    const quantityInput = document.getElementById("item-qty");
+    if (parseInt(quantityInput.value) > 0) {
+      quantityInput.value = parseInt(quantityInput.value) - 1;
+      updateOutput();
+    }
+  }
+
+function updateOutput() {
+
+    const itemInput = document.getElementById("item-qty").value;
+    document.getElementById("tot-quantity").innerHTML = "Items (" +itemInput+ ")";
+    
+    const itemInput_Quantity = document.getElementById("item-qty").value;
+
+    
+    item_Cost = parseFloat(productValue) * parseFloat(itemInput_Quantity);
+    document.getElementById("itemCost").innerHTML = "$" + item_Cost.toFixed(2);
+
+    const ship_fee = document.getElementById("shippingFee").value;
+    document.getElementById("summary-shippingFee").innerHTML = "$" +ship_fee;
+    
+    tot_cost_before_tax = parseFloat(ship_fee) + parseFloat(item_Cost);
+    document.getElementById("summary-costBeforeTax").innerHTML = "$" + tot_cost_before_tax.toFixed(2);
+
+    const tax = Math.round(parseFloat(tot_cost_before_tax) * 10)/100;
+    document.getElementById("summary-tax").innerHTML = "$" + tax.toFixed(2);
+
+    const total_cost = tot_cost_before_tax + tax;
+    document.getElementById("summary-totalCost").innerHTML = "$" + total_cost.toFixed(2);
+  
+}
+
+</script>
+
+    
+<body>
+    <form>
+
+   
+        <h3>Basketball Order Form</h3>
+
+       
+                <ul>
+                    <td>Basketball Products:</td>
+
+                    <td><input type="text" size="5" value="0" id="item-qty" oninput="updateOutput()" name="item-qty"></td>
+                    <td><button type="button" value="+" id="plus-button" onclick="increment()">+</button></td>
+                    <td><button type="button" value="-" id="minus-button" onclick="decrement()">-</button></td>
+
+                </ul>
+                <ul>
+                    <td>Shipping and Handling Fee :</td>
+                    <td><input type="text" size="5" id="shippingFee" oninput="updateOutput()" name="fee-total" placeholder="$0.00"></td>
+                </ul>
+        
+
+            <table oninput="orderSummary()">
+                <tr>
+                    <td><h4>Order Summary</h4></td>
+                </tr>
+                <tr>
+                    <td id="tot-quantity" class="label">Items () :</td>
+                    <td id="itemCost" >$0.00</td>
+                </tr>
+                <tr class="shipping">
+                    <td class="label">Shipping & Handling () :</td>
+                    <td id="summary-shippingFee">$0.00</td>
+                </tr>
+
+                <tr>
+                    <td class="label">Total before Tax :</td>
+                    <td id="summary-costBeforeTax"></td>
+                </tr>
+                <tr>
+                    <td class="label">Estimated Tax (10%) :</td>
+                    <td id="summary-tax"></td>
+                </tr> 
+                <tr class="total">
+                    <td class="label"><h5>Order Total :</h5></td>
+                    <td id="summary-totalCost"></td>
+                </tr>   
+            </table>
+
+    </form>
+</body>
+
+</html>
+

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>calculator</title>
+</head>
+<body>
+ <style>
+          
+.con{
+    width:300px;
+    margin: 0 auto;
+}
+input{
+    font-size: 2em;
+}
+button{
+    
+    padding: 5px 8px;
+            background-color: rgb(139, 71, 211);
+            color: white;
+            border-radius: 7px;
+}
+body{
+    background-color: rgb(111, 155, 194);
+}
+
+
+    </style>
+ 
+   
+    <div class="con">
+        <h2>Calculator!</h2>
+        <p>
+    <label for="number1">Enter First Number
+    <input type="text"id="number1" required>
+    </p>
+</label>
+    <p>
+        <label for="number2">Enter Second Number
+    <input type="text"id="number2" required>
+    </p>
+</label>
+<p>
+    <label for="Result">Result : 
+    <input type="number"  name="Result" id="result" disabled>
+</label>
+</p>
+    
+<button type="button" onclick="add()">+</button>
+<button type="button" onclick="subtract()">-</button>
+<button type="button" onclick="multiply()">x</button>
+<button type="button" onclick="divide()">/</button>
+<button type="button" onclick="Clear()">Clear</button>
+<button type="button" onclick="About()">About</button>
+
+    
+
+    </div>
+    
+    <script>
+        function add() 
+        {
+            const num1 = parseFloat(document.getElementById("number1").value);
+            const num2 = parseFloat(document.getElementById("number2").value);
+            let total = num1 + num2;
+            document.getElementById("result").value = total;
+        }
+
+        function subtract() 
+        {
+            const num1 = parseFloat(document.getElementById("number1").value);
+            const num2 = parseFloat(document.getElementById("number2").value);
+            let total = num1 - num2;
+            document.getElementById("result").value = total;
+        }
+
+        function multiply() 
+        {
+            const num1 = parseFloat(document.getElementById("number1").value);
+            const num2 = parseFloat(document.getElementById("number2").value);
+            let total = num1 * num2;
+            document.getElementById("result").value = total;
+        }
+
+        function divide() 
+        {
+            const num1 = parseFloat(document.getElementById("number1").value);
+            const num2 = parseFloat(document.getElementById("number2").value);
+            let total = num1 / num2;
+            document.getElementById("result").value = total;
+        }
+
+        function Clear() 
+        {
+            document.getElementById("number1").value = " ";
+            document.getElementById("number2").value = " ";
+            document.getElementById("result").value = " ";
+        }
+
+        function About() 
+        {
+            alert("Simple Calculator");
+        }
+</script>
+</body>
+</html>
